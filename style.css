@@ -42,6 +42,9 @@ header.scrolled {
   padding: 6px 0;
 }
 
+nav {
+  position: relative;
+}
 
 nav .container {
   display: flex;
@@ -87,6 +90,13 @@ nav a.logo {
 }
 
 nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+/* Menu mobile/desktop */
+nav .nav-menu {
   list-style: none;
   display: flex;
   gap: 20px;
@@ -206,8 +216,9 @@ footer {
 /* Responsivo */
 @media (max-width: 768px) {
   nav .container {
-    flex-direction: row;
+    display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 15px;
   }
 
@@ -215,28 +226,31 @@ footer {
     display: flex;
   }
 
-  nav ul {
+  nav .nav-menu {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
+    width: 100%;
     flex-direction: column;
     background-color: var(--primary-color);
     gap: 0;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    z-index: 999;
+    list-style: none;
   }
 
-  nav ul.active {
+  nav .nav-menu.active {
     max-height: 500px;
   }
 
-  nav ul li {
+  nav .nav-menu li {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  nav ul li a {
+  nav .nav-menu li a {
     display: block;
     padding: 15px 20px;
     border-radius: 0;
@@ -628,17 +642,20 @@ footer {
 }
 
 
-nav ul li {
-  opacity: 0;
-  transform: translateY(-10px);
-  animation: menuFade 0.5s forwards;
-}
+/* Apenas para desktop - não aplica em mobile */
+@media (min-width: 769px) {
+  nav ul li {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: menuFade 0.5s forwards;
+  }
 
-nav ul li:nth-child(1){animation-delay:.1s}
-nav ul li:nth-child(2){animation-delay:.2s}
-nav ul li:nth-child(3){animation-delay:.3s}
-nav ul li:nth-child(4){animation-delay:.4s}
-nav ul li:nth-child(5){animation-delay:.5s}
+  nav ul li:nth-child(1){animation-delay:.1s}
+  nav ul li:nth-child(2){animation-delay:.2s}
+  nav ul li:nth-child(3){animation-delay:.3s}
+  nav ul li:nth-child(4){animation-delay:.4s}
+  nav ul li:nth-child(5){animation-delay:.5s}
+}
 
 @keyframes menuFade {
   to {
@@ -646,8 +663,8 @@ nav ul li:nth-child(5){animation-delay:.5s}
     transform: translateY(0);
   }
 }
-@media (max-width: 600px) {
 
+@media (max-width: 600px) {
   header {
     padding: 6px 0;
   }
@@ -660,22 +677,11 @@ nav ul li:nth-child(5){animation-delay:.5s}
     font-size: 1.1rem;
   }
 
-  nav ul {
-    gap: 8px;
+  nav ul li {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
-
-  nav ul li a {
-    padding: 6px 8px;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 600px) {
-
-  .logo-area img {
-    height: 32px;
-  }
-
 }
 
 
