@@ -26,11 +26,18 @@
     <img src="imagens/lepe.png" alt="LEPE">
   </a>
 </div>
-  <ul>
+
+ <button class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+ </button>
+
+  <ul id="menu">
   <li><a href="index.html">Home</a></li>
   <li><a href="cursos.html">Cursos</a></li>
   <li><a href="eventos.html">Eventos</a></li>
-  <li><a href="professores.html">Professores</a></li>
+  <li><a href="professores.html" class="active">Professores</a></li>
   <li><a href="alunos.html">Alunos</a></li>
 </ul>
 
@@ -134,6 +141,31 @@ window.addEventListener("scroll", () => {
   } else {
     header.classList.remove("scrolled");
   }
+});
+</script>
+
+<!-- MENU HAMBURGER -->
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    menu.classList.toggle('active');
+  });
+
+  // Fechar menu ao clicar em um link
+  const menuLinks = menu.querySelectorAll('a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      menu.classList.remove('active');
+    });
+  });
+</script>
+
+</body>
+</html>
 });
 </script>
 

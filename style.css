@@ -49,6 +49,36 @@ nav .container {
   align-items: center;
 }
 
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
 nav a.logo {
   color: white;
   font-weight: 700;
@@ -176,12 +206,44 @@ footer {
 /* Responsivo */
 @media (max-width: 768px) {
   nav .container {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 15px;
   }
+
+  .hamburger {
+    display: flex;
+  }
+
   nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  nav ul.active {
+    max-height: 500px;
+  }
+
+  nav ul li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    border-radius: 0;
+  }
+
+  .logo-area {
+    gap: 10px;
   }
 }
 /* ===== HERO CARROSSEL ===== */
@@ -403,36 +465,130 @@ footer {
 
 @media (max-width: 600px) {
 
+  header {
+    padding: 6px 0;
+  }
+
+  .logo-area img {
+    height: 32px;
+  }
+
+  .logo-area span {
+    font-size: 1.1rem;
+  }
+
+  nav ul {
+    gap: 8px;
+  }
+
+  nav ul li a {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+  }
+
   .hero {
-    height: 300px;
+    height: 250px;
   }
 
   .hero-overlay {
-    padding: 20px;
+    padding: 15px;
+    max-width: 90%;
   }
 
   .hero-overlay h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .hero-overlay p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
   }
 
   .hero-buttons {
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    width: 100%;
   }
 
   .grid-3 {
     gap: 15px;
+    grid-template-columns: 1fr;
   }
 
   section {
-    padding: 25px 0;
-  }
-
-  nav ul {
-    gap: 10px;
+    padding: 20px 0;
   }
 
   .card {
     padding: 15px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  h1, h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  form input, form textarea {
+    font-size: 16px;
+  }
+
+  .footer-logos {
+    gap: 20px;
+  }
+
+  .footer-logos img {
+    height: 40px;
+  }
+
+  /* Professor cards responsivo */
+  .professor-card,
+  .professor-card.reverse {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .professor-image img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+  }
+
+  /* Event grid responsivo */
+  .event-grid {
+    gap: 15px;
+  }
+
+  .event-card {
+    padding: 15px;
+  }
+
+  .event-icon {
+    font-size: 24px;
+  }
+
+  .event-card h4 {
+    font-size: 1rem;
+  }
+
+  .event-card p {
+    font-size: 0.85rem;
   }
 }
 
@@ -455,6 +611,7 @@ footer {
     height: 35px;
   }
 }
+
 .logo-area {
   display: flex;
   align-items: center;

@@ -24,7 +24,14 @@
     <img src="imagens/lepe.png" alt="LEPE">
   </a>
  </div>
-<ul>
+
+ <button class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+ </button>
+
+<ul id="menu">
   <li><a href="index.html">Home</a></li>
   <li><a href="cursos.html">Cursos</a></li>
   <li><a href="eventos.html">Eventos</a></li>
@@ -131,17 +138,38 @@
 
     setInterval(nextSlide, 5000);
   </script>
-<script>
-const header = document.querySelector("header");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 40) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
-</script>
+  <script>
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+  </script>
+
+  <!-- MENU HAMBURGER -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      menu.classList.toggle('active');
+    });
+
+    // Fechar menu ao clicar em um link
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        menu.classList.remove('active');
+      });
+    });
+  </script>
 
 </body>
 </html>
